@@ -28,3 +28,8 @@ export interface RymRes {
     };
     results: Rym[];
 }
+
+export interface RymState {
+  rym: Rym[];
+  error: any;
+}
