@@ -10,11 +10,23 @@
   </li>
 </ul>
 
-<nav>
-  <button (click)="onPageChange(2)">Pagina 2</button>
-  <button (click)="onPageChange(3)">Pagina 3</button>
-  <button (click)="onPageChange(4)">Pagina 4</button>
-  <button (click)="onPageChange(5)">Pagina 5</button>
-  <button (click)="onPageChange(6)">Pagina 6</button>
-  <button (click)="onPageChange(7)">Pagina 7</button>
+<nav *ngIf="currentPage$ | async; let currentPage">
+  <button [ngClass]="{ cur: currentPage === 2 }" (click)="onPageChange(2)">
+    Pagina 2
+  </button>
+  <button [ngClass]="{ cur: currentPage === 3 }" (click)="onPageChange(3)">
+    Pagina 3
+  </button>
+  <button [ngClass]="{ cur: currentPage === 4 }" (click)="onPageChange(4)">
+    Pagina 4
+  </button>
+  <button [ngClass]="{ cur: currentPage === 5 }" (click)="onPageChange(5)">
+    Pagina 5
+  </button>
+  <button [ngClass]="{ cur: currentPage === 6 }" (click)="onPageChange(6)">
+    Pagina 6
+  </button>
+  <button [ngClass]="{ cur: currentPage === 7 }" (click)="onPageChange(7)">
+    Pagina 7
+  </button>
 </nav>
