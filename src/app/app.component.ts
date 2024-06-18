@@ -7,17 +7,21 @@ import { loadRym } from './store/actions/rym.actions';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   rym$!: Observable<Rym[]>;
   error$!: Observable<any>;
-  constructor(private store: Store<{rym: RymState}>){
-    this.rym$ = store.select(state => state.rym.rym);
-    this.error$ = store.select(state => state.rym.error);
+  constructor(private store: Store<{ rym: RymState }>) {
+    this.rym$ = store.select((state) => state.rym.rym);
+    this.error$ = store.select((state) => state.rym.error);
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadRym());
+    this.setLoadRym(1);
+  }
+
+  setLoadRym(page: number) {
+    this.store.dispatch(loadRym({ page }));
   }
 }

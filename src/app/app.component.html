@@ -1,11 +1,20 @@
 <h1>Hola</h1>
-<hr/>
+<hr />
 
 <div *ngIf="error$ | async as error">
   <p>Error: {{ error }}</p>
 </div>
 <ul>
   <li *ngFor="let rym of rym$ | async">
-    {{ rym.name }}
+    <img [src]="rym.image" width="50" /> {{ rym.name }}
   </li>
 </ul>
+
+<nav>
+  <button (click)="setLoadRym(2)">Pagina 2</button>
+  <button (click)="setLoadRym(3)">Pagina 3</button>
+  <button (click)="setLoadRym(4)">Pagina 4</button>
+  <button (click)="setLoadRym(5)">Pagina 5</button>
+  <button (click)="setLoadRym(6)">Pagina 6</button>
+  <button (click)="setLoadRym(7)">Pagina 7</button>
+</nav>

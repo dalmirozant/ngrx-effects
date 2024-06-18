@@ -1,8 +1,17 @@
-import { createAction, props } from "@ngrx/store";
-import { Rym } from "../../models/rym.interface";
+import { createAction, props } from '@ngrx/store';
+import { Rym } from '../../models/rym.interface';
 
-export const loadRym = createAction('[Rym] Load Rym');
+export const loadRym = createAction(
+  '[Rym] Load Rym',
+  props<{ page: number }>()
+);
 
-export const loadRymSuccess = createAction('[Rym] Load Rym Success', props<{rym: Rym[]}>());
+export const loadRymSuccess = createAction(
+  '[Rym] Load Rym Success',
+  props<{ rym: Rym[] }>()
+);
 
-export const loadRymFailure = createAction('[Rym] Load Rym Failure', props<{error: any}>())
+export const loadRymFailure = createAction(
+  '[Rym] Load Rym Failure',
+  props<{ error: any }>()
+);
