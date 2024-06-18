@@ -6,15 +6,18 @@ import {
   loadRymFailure,
   loadRymSuccess,
 } from '../actions/rym.actions';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, map, mergeMap, of, withLatestFrom } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { RymState } from '../../models/rym.interface';
 
 @Injectable()
 export class RymEffects {
   loadRym$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadRym),
-      mergeMap((actions) =>
-        this.rymService.getRym(actions.page).pipe(
+      withLatestFrom(this.store.select((state) => state.rym.currentPage)),
+      mergeMap(([action, currentPage]) =>
+        this.rymService.getRym(currentPage).pipe(
           map((rym) => loadRymSuccess({ rym })),
           catchError((error) => of(loadRymFailure({ error })))
         )
@@ -22,5 +25,9 @@ export class RymEffects {
     )
   );
 
-  constructor(private actions$: Actions, private rymService: RymService) {}
+  constructor(
+    private actions$: Actions,
+    private rymService: RymService,
+    private store: Store<{ rym: RymState }>
+  ) {}
 }
