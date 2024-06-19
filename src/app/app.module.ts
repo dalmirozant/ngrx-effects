@@ -9,10 +9,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { rymReducer } from './store/reducers/rym.reducers';
 import { RymEffects } from './store/effects/rym.effects';
 import { HttpClientModule } from '@angular/common/http';
+import { PaginaComponent } from './pages/pagina/pagina.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PaginaComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
